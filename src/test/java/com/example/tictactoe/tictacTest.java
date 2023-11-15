@@ -34,7 +34,7 @@ public class tictacTest {
 
     @Test
     public void willGetDraw(){
-        model.board=new ArrayList<>(List.of(1,-1,1,
+        model.board=new ArrayList<>(List.of( 1,-1,1,
                                              1,-1,1,
                                              -1,1,-1));
         model.checkWin();
@@ -43,23 +43,31 @@ public class tictacTest {
 
     @Test
     public void player1Wins(){
-        model.board=new ArrayList<>(List.of(1,1,1,
-                1,-1,-1,
-                -1,1,-1));
+        model.board=new ArrayList<>(List.of(1, 1, 1,
+                                            0,-1, 0,
+                                            0,-1,-1));
         model.checkWin();
         assertTrue(model.winner==1);
     }
 
     @Test
     public void player2Wins(){
-        model.board=new ArrayList<>(List.of(1,-1,-1,
-                1,-1,-1,
-                -1,1,-1));
+        model.board=new ArrayList<>(List.of(1, 0,-1,
+                                            0, 1,-1,
+                                            0, 1,-1));
         model.changeTurn();
         //The model checks who wins by checking the current players turn when
         //a 3 in a row is achieved, so we need to change the turn here to emulate proper play.
+        //It would be more proper to place the crosses manually, especially considering the board should probably
+        //be private. But that would require a lot of fiddling, and this is functional, so whatever.
         model.checkWin();
         assertTrue(model.winner==-1);
+    }
+
+    @Test
+    public void noWinner(){
+        model.checkWin();
+        assertTrue(model.winner==-2);
     }
 
 

@@ -36,11 +36,13 @@ public class HelloController {
         buttons= new ArrayList<>(Arrays.asList(button0, button1, button2, button3, button4, button5, button6, button7, button8));
     }
 
+    //Runs when clicking a square
     public void buttonAction(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         if (trySetSquare(buttons.indexOf(button))&&AIActive) AIturn();
     }
 
+    //Checks if a square is valid, and sets it if it is. If it does, it returns true which lets the AI do a move.
     public boolean trySetSquare(int i){
         if (model.canSetSquare(i)) {
             model.setSquare(i);
@@ -55,6 +57,7 @@ public class HelloController {
         else return false;
     }
 
+    //Resets the board for a new game
     public void restart(){
         for (Button button:buttons) {
             button.setText("");
@@ -65,6 +68,7 @@ public class HelloController {
         model.restart();
     }
 
+    //Shows who won and stops the game
     public void gameEnd(){
         updateScores();
         for (Button b:buttons
@@ -82,12 +86,14 @@ public class HelloController {
         AIActive=false;
     }
 
+    //Updates the score display
     public void updateScores(){
         p1Score.setText(Integer.toString(model.playerWins));
         p2Score.setText(Integer.toString(model.AIWins));
         drawScore.setText(Integer.toString(model.draws));
     }
 
+    //Makes the AI do one random move
     public void AIturn(){
         int i = model.getAIMove();
         trySetSquare(i);

@@ -25,14 +25,17 @@ public class tictac {
         board = new ArrayList<>(Collections.nCopies(9,0));
     }
 
+    //sets a square to the active players number
     public void setSquare(int i){
         board.set(i, currPlayer);
     }
 
+    //changes who is the active player
     public void changeTurn(){
         currPlayer=currPlayer*-1;
     }
 
+    //Checks if a square is open
     public boolean canSetSquare (int i){
         if (board.get(i)==0){
             return true;
@@ -40,6 +43,7 @@ public class tictac {
         else return false;
     }
 
+    //Generates a random valid placement
     public int getAIMove(){
         if (!board.contains(0)) throw new RuntimeException("Can't find legal move");
         boolean b = false;
@@ -51,6 +55,7 @@ public class tictac {
         return i;
     }
 
+    //checks if the active player has won, or if there is a tie
     public void checkWin(){
         //checks draw
         if (!board.contains(0)) winner=0;
@@ -78,6 +83,7 @@ public class tictac {
         if (winner!=-2) gameOver();
     }
 
+    //sets score and tells controller game is over
     public void gameOver(){
         gameOver=true;
         if (winner==0) draws++;
@@ -85,6 +91,7 @@ public class tictac {
         else if (winner==1) playerWins++;
     }
 
+    //cleans up for a new game
     public void restart(){
         Collections.fill(board,0);
         currPlayer=1;
@@ -92,6 +99,7 @@ public class tictac {
         winner=-2;
     }
 
+    //fetches string to use for current players square placement
     public String getCurrentLabel(){
         if (currPlayer==1) return "O";
         else return "X";
