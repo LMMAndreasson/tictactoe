@@ -83,7 +83,6 @@ public class tictac {
         if (winner==0) draws++;
         else if (winner==-1) AIWins++;
         else if (winner==1) playerWins++;
-        System.out.println("cheese");
     }
 
     public void restart(){
