@@ -59,7 +59,7 @@ public class tictacTest {
         //The model checks who wins by checking the current players turn when
         //a 3 in a row is achieved, so we need to change the turn here to emulate proper play.
         //It would be more proper to place the crosses manually, especially considering the board should probably
-        //be private. But that would require a lot of fiddling, and this is functional, so whatever.
+        //be private. But that would require a lot of fiddling, and this is functional, so it is what it is.
         model.checkWin();
         assertTrue(model.winner==-1);
     }

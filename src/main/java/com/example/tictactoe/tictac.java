@@ -3,12 +3,14 @@ package com.example.tictactoe;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class tictac {
 
     public ArrayList<Integer> board;
-    int currPlayer =1;
+
+    int PLAYER1 = 1;
+    int PLAYER2 =-1;
+    int currPlayer =PLAYER1;
 
     int playerWins = 0;
 
@@ -87,21 +89,21 @@ public class tictac {
     public void gameOver(){
         gameOver=true;
         if (winner==0) draws++;
-        else if (winner==-1) AIWins++;
-        else if (winner==1) playerWins++;
+        else if (winner==PLAYER2) AIWins++;
+        else if (winner==PLAYER1) playerWins++;
     }
 
     //cleans up for a new game
     public void restart(){
         Collections.fill(board,0);
-        currPlayer=1;
+        currPlayer=PLAYER1;
         gameOver=false;
         winner=-2;
     }
 
     //fetches string to use for current players square placement
     public String getCurrentLabel(){
-        if (currPlayer==1) return "O";
+        if (currPlayer==PLAYER1) return "O";
         else return "X";
     }
 }
